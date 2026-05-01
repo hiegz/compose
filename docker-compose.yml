@@ -1,0 +1,17 @@
+name: hiegz
+
+services:
+  tunnel:
+    image: cloudflare/cloudflared:2026.3.0
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+
+    env_file:
+      - ./env/cloudflared.env
+
+    networks:
+      - network
+
+networks:
+  network:
+    driver: bridge
