@@ -12,6 +12,19 @@ services:
     networks:
       - network
 
+  vaultwarden:
+    image: vaultwarden/server:1.35.8-alpine
+    restart: unless-stopped
+
+    env_file:
+      - "env/vaultwarden.env"
+
+    volumes:
+      - ./volumes/vw_data:/data/
+
+    networks:
+      - network
+
 networks:
   network:
     driver: bridge
